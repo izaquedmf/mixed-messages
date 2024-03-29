@@ -1,5 +1,17 @@
 const fs = require('fs');
 
+function selectMessage(messages){
+    return messages[Math.floor(Math.random() * messages.length)];
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
 //get all phrases from the files to insert into arrays
 try{
     var pAstrology = fs.readFileSync('./Mixed Messages/messages/random astrology.txt','utf-8'); //astrology phrases
@@ -22,16 +34,3 @@ const allPhrases = shuffleArray(pAstrology.concat(pFacts, pQuotes));
 const message = selectMessage(allPhrases);
 
 console.log(message);
-
-function selectMessage(messages){
-    return messages[Math.floor(Math.random() * messages.length)];
-}
-
-function shuffleArray(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array;
-}
-
